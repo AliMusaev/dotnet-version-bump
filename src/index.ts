@@ -6,8 +6,7 @@ try {
     const csproj = core.getInput('csprojFile');
     console.log(`filepath ${csproj}`);
 
-    const file =  fs.promises.readFile(csproj, 'utf-8').then( data => {
-        const file = data.toString();
+    const file =  fs.promises.readFile(csproj, 'utf-8').then( file => {
         console.log(file);
         let index = file.indexOf('<Version>');
         if (index === -1) {
