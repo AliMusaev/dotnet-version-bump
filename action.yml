@@ -9,4 +9,4 @@ outputs:
     description: 'app version'
 runs:
   using: 'node16'
-  main: 'lib/index.js'
+  main: 'lib\index.js'
