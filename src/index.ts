@@ -8,11 +8,8 @@ const main = async () => {
         console.log(`filepath ${csproj}`);
         const file = await fs.promises.readFile(csproj, 'utf-8');
         console.log(file);
-        let index = file.includes('Version');
-        if (index === false) {
-            throw new Error('Not found version row');   
-        }
-        console.log('index ' + index)
+        let index = file.split('\n');
+        console.log('index ' + index.length)
         // let version :string = 'v';
         // index += 9; // skip version word
         // while (file[index] !== '<') {
