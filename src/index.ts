@@ -8,7 +8,7 @@ const main = async () => {
         console.log(`filepath ${csproj}`);
         const file = await fs.promises.readFile(csproj, 'utf-8');
         console.log(file);
-        let index = file.includes('<Version>');
+        let index = file.includes('Version');
         if (index === false) {
             throw new Error('Not found version row');   
         }
