@@ -19,8 +19,6 @@ const main = async () => {
         //     version = version + file[index];
         // }
         // core.setOutput('version', version);
-        const payload = JSON.stringify(github.context.payload, undefined, 2)
-        console.log(`The event payload: ${payload}`);
     } catch (err: any) {
         core.setFailed(err.message)
     }
