@@ -4,10 +4,7 @@ import fs from 'fs';
 
 const main = async () => {
     try {
-        const csproj = core.getInput('csprojFile');
-        console.log(`filepath ${csproj}`);
-        const file = await fs.promises.readFile(csproj, 'utf-8');
-        console.log(file);
+        const file = await readFile();
         let index = file.split('\n');
         console.log('index ' + index.length)
         // let version :string = 'v';
@@ -21,5 +18,12 @@ const main = async () => {
     }
 }
 
+const readFile  = async () => {
+    const csproj = core.getInput('csprojFile');
+    console.log(`filepath ${csproj}`);
+    const file = await fs.promises.readFile(csproj, 'utf-8');
+    console.log(file);
+    return file;
+}
 main();
 
