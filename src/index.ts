@@ -5,8 +5,8 @@ import fs from 'fs';
 const main = async () => {
     try {
         const file = await readFile();
-        let index = file.split('\n');
-        console.log('index ' + index.length)
+        let index = 2
+        console.log('index ' + index)
         // let version :string = 'v';
         // index += 9; // skip version word
         // while (file[index] !== '<') {
