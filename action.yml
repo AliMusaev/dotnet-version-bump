@@ -1,0 +1,12 @@
+name: 'Hello World'
+description: 'Greet someone and record the time'
+inputs:
+  csprojFile:  # id of input
+    description: 'project file'
+    required: true
+outputs:
+  version: # id of output
+    description: 'app version'
+runs:
+  using: 'node16'
+  main: 'lib/index.js'
