@@ -1,12 +1,11 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import fs from 'fs';
+const { promises: fs } = require('fs')
 
 try {
     const csproj = core.getInput('csprojFile');
     console.log(`filepath ${csproj}`);
-
-    const file =  fs.promises.readFile(csproj, 'utf-8').then( file => {
+    fs.readFile(csproj, 'utf-8').then( (file: string | string[]) => {
         console.log(file);
         let index = file.indexOf('<Version>');
         if (index === -1) {
@@ -20,9 +19,9 @@ try {
         core.setOutput('version', version);
         const payload = JSON.stringify(github.context.payload, undefined, 2)
         console.log(`The event payload: ${payload}`);
-    }).catch(err => {
-        throw err;
-    });
+    }).catch(function (err: any) {
+            throw err;
+        });
     
 } catch (error: any) {
     core.setFailed(error.message);
