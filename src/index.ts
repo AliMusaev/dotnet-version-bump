@@ -6,6 +6,7 @@ try {
     const csproj = core.getInput('csprojFile');
     console.log(`filepath ${csproj}`);
     const file = fs.readFileSync(csproj).toString();
+    console.log(file);
     let index = file.indexOf('<Version>');
     if (index === -1) {
         throw new Error('Not found version row');   
