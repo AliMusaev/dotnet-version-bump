@@ -9,7 +9,7 @@ try {
         if (err) {
             throw err;
         }
-        const file = data.toString();
+        const file = data.toString('utf-8');
         console.log(file);
         let index = file.indexOf('<Version>');
         if (index === -1) {
