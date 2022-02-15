@@ -6,12 +6,13 @@ const main = async () => {
     try {
         const csproj = core.getInput('csprojFile');
         console.log(`filepath ${csproj}`);
-        const file = fs.readFileSync(csproj, 'utf-8');
+        const file = await fs.promises.readFile(csproj, 'utf-8');
         console.log(file);
         let index = file.indexOf('<Version>');
         if (index === -1) {
             throw new Error('Not found version row');   
         }
+        console.log('index ' + index)
         let version :string = 'v';
         index += 9; // skip version word
         while (file[index] !== '<') {
