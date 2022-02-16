@@ -10,6 +10,9 @@ inputs:
   updType:
     description: 'major minor patch or build'
     required: true
+outputs:
+  version:
+    description: 'new version'
 runs:
   using: 'node12'
   main: 'dist/index.js'

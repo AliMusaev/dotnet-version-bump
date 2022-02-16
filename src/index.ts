@@ -11,10 +11,11 @@ const main = async () => {
             version = version + file[index];
             index++
         }
-        const newFile = file.replace(version, upVersion(getVersion(version)));
+        var newVersion = upVersion(getVersion(version))
+        const newFile = file.replace(version, newVersion);
         await fs.promises.writeFile(core.getInput('csprojFile'), newFile);
         console.log(await readFile());
-        core.setOutput('version', version);
+        core.setOutput('version', newVersion);
     } catch (err: any) {
         core.setFailed(err.message)
     }
