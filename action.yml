@@ -1,10 +1,10 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
-  csprojFile:  # id of input
+  filename:  # id of input
     description: 'project file'
     required: true
-  netV:
+  dotnetVersion:
     description: 'version of dotnet framework'
     required: true
   updType:
