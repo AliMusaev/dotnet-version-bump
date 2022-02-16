@@ -11,7 +11,7 @@ const main = async () => {
         while (file[index] !== '<') {
             version = version + file[index];
         }
-        core.setOutput('version', 2);
+        core.setOutput('version', version);
     } catch (err: any) {
         core.setFailed(err.message)
     }
