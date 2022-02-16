@@ -43,7 +43,7 @@ const readVersion = (file: string, substring: string, lastSymbol: string) => {
     return version;
 }
 const readFile  = async (filename: string) => {
-    if (filename){
+    if (!filename){
         throw new Error('file name is empty')
     }
     const file = await fs.promises.readFile(filename, 'utf-8');
