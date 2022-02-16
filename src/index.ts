@@ -5,7 +5,6 @@ const main = async () => {
     try {
         const file = await readFile();
         let index = file.indexOf('<Version>');
-        console.log('index ' + index)
         let version = 'v';
         index += 9; // skip version word
         while (file[index] !== '<') {
@@ -19,9 +18,9 @@ const main = async () => {
 
 const readFile  = async () => {
     const csproj = core.getInput('csprojFile');
-    console.log(`filepath ${csproj}`);
+    core.debug(`filepath ${csproj}`);
     const file = await fs.promises.readFile(csproj, 'utf-8');
-    console.log(file);
+    core.debug(file);
     return file;
 }
 main();
