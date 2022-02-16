@@ -16,17 +16,13 @@ const main = async () => {
 
         }
         newVersion = castArrayVersionToString(upVersion(castStringVersionToArray(oldVersion)));
-        const newFile = file.replace(oldVersion, newVersion);
+        let re = new RegExp(oldVersion, 'g');
+        const newFile = file.replace(re, newVersion);
         await fs.promises.writeFile(core.getInput('filename'), newFile);
         core.setOutput('version', newVersion);
     } catch (err: any) {
         core.setFailed(err.message)
     }
-}
-
-const updateAssemblyFile = async(filename: string) => {
-    const file = await readFile(filename);
-    
 }
 
 const readVersion = (file: string, substring: string, lastSymbol: string) => {
