@@ -9,7 +9,8 @@
     "test": "exit 0",
     "version": "bash ./updateVersion.sh",
     "testbuild": "ncc build --minify --source-map ./dist/index.js",
-    "package": "npm run build && npm run testbuild"
+    "package": "npm run build && npm run testbuild",
+    "dev": "ts-node src/index.ts"
   },
   "files": [
     "dist"
