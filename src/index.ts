@@ -6,7 +6,7 @@ const main = async () => {
         const file = await readFile();
         let index = file.indexOf('<Version>');
         console.log('index ' + index)
-        let version :string = 'v';
+        let version = 'v';
         index += 9; // skip version word
         while (file[index] !== '<') {
             version = version + file[index];
@@ -25,4 +25,3 @@ const readFile  = async () => {
     return file;
 }
 main();
-
