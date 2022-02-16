@@ -9,6 +9,7 @@ const main = async () => {
         index += 9; // skip version word
         while (file[index] !== '<') {
             version = version + file[index];
+            index++
         }
         core.setOutput('version', version);
     } catch (err: any) {
