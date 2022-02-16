@@ -8,10 +8,10 @@
     "build": "tsc",
     "test": "exit 0",
     "version": "bash ./updateVersion.sh",
-    "testbuild": "ncc build --minify ./dist/index.js"
+    "testbuild": "ncc build --minify --source-map ./dist/index.js"
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "repository": {
     "type": "git",
