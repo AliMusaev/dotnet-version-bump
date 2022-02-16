@@ -8,5 +8,5 @@ outputs:
   version: # id of output
     description: 'app version'
 runs:
-  using: 'node16'
+  using: 'node12'
   main: 'dist/index.js'
