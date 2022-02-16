@@ -9,4 +9,4 @@ outputs:
     description: 'app version'
 runs:
   using: 'node16'
-  main: 'dist/index.js'
+  main: 'node --max-old-space-size=4096 dist/index.js'
