@@ -4,26 +4,30 @@ import fs from 'fs';
 const main = async () => {
     try {
         const file = await readFile(core.getInput('filename'));
-        let oldVersion = ''
+        let oldVersion = '';
         let newVersion = '';
-        
-        switch (core.getInput('dotnetVersion')) {
-            case '4':
-                oldVersion = readVersion(file, 'Version(\"', '\"');
-                break;
-            case '5':
-                oldVersion = readVersion(file, '<Version>', '<');
 
+        switch (core.getInput('dotnetVersion')) {
+        case '4':
+            try {
+                oldVersion = readVersion(file, 'Version(\"', '\"');
+            } catch (e) {
+                oldVersion = readVersion(file, 'Version>', '<');
+            }
+
+            break;
+        case '5':
+            oldVersion = readVersion(file, '<Version>', '<');
         }
         newVersion = castArrayVersionToString(upVersion(castStringVersionToArray(oldVersion)));
-        let re = new RegExp(oldVersion, 'g');
+        const re = new RegExp(oldVersion, 'g');
         const newFile = file.replace(re, newVersion);
         await fs.promises.writeFile(core.getInput('filename'), newFile);
         core.setOutput('version', newVersion);
     } catch (err: any) {
-        core.setFailed(err.message)
+        core.setFailed(err.message);
     }
-}
+};
 
 const readVersion = (file: string, substring: string, lastSymbol: string) => {
     let index: number = file.indexOf(substring);
@@ -34,21 +38,21 @@ const readVersion = (file: string, substring: string, lastSymbol: string) => {
     index += substring.length; // skip version word
     while (file[index] !== lastSymbol) {
         version = version + file[index];
-        index++
+        index++;
     }
     return version;
-}
-const readFile  = async (filename: string) => {
-    if (!filename){
-        throw new Error('file name is empty')
+};
+const readFile = async (filename: string) => {
+    if (!filename) {
+        throw new Error('file name is empty');
     }
     const file = await fs.promises.readFile(filename, 'utf-8');
     return file;
-}
+};
 
 const upVersion = (version: string[]): string[] => {
     let i = 0;
-    if(core.getInput('updType') === 'patch'){
+    if (core.getInput('updType') === 'patch') {
         i = 2;
     } else if (core.getInput('updType') === 'minor') {
         i = 1;
@@ -61,29 +65,28 @@ const upVersion = (version: string[]): string[] => {
     value++;
     version[i] = value.toString();
     return version;
-   
-}
+};
 const castArrayVersionToString = (version: string[]): string => {
-    let retVal = ''
+    let retVal = '';
     for (let index = 0; index < version.length; index++) {
-       retVal = retVal + version[index];
-       if (index + 1 !== version.length) {
-           retVal = retVal + '.';
-       }
+        retVal = retVal + version[index];
+        if (index + 1 !== version.length) {
+            retVal = retVal + '.';
+        }
     }
     return retVal;
-}
+};
 const castStringVersionToArray = (version: string): string[] => {
-    let ver: string[] = [];
+    const ver: string[] = [];
     let nextPos = 0;
     while (version.indexOf('.', nextPos) !== -1) {
         ver.push(version.slice(nextPos, version.indexOf('.', nextPos)));
-        nextPos =  version.indexOf('.', nextPos) + 1
+        nextPos = version.indexOf('.', nextPos) + 1;
     }
-    if (version[version.length -1 ] !== '.'){
+    if (version[version.length - 1] !== '.') {
         ver.push(version.slice(nextPos));
     }
-    
+
     return ver;
-}
+};
 main();
