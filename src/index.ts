@@ -14,7 +14,6 @@ const main = async () => {
             } catch (e) {
                 oldVersion = readVersion(file, 'Version>', '<');
             }
-
             break;
         case '5':
             oldVersion = readVersion(file, '<Version>', '<');
