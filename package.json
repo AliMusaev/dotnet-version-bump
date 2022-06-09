@@ -1,6 +1,6 @@
 {
-  "name": "test-gh-action",
-  "version": "v0.0.4",
+  "name": "dotnet-version-bump",
+  "version": "v0.0.6",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -17,14 +17,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/modul-tech/test-gh-action.git"
+    "url": "git+https://github.com/AliMusaev/dotnet-version-bump.git"
   },
   "author": "MusaevAE",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/modul-tech/test-gh-action/issues"
+    "url": "https://github.com/AliMusaev/dotnet-version-bump/issues"
   },
-  "homepage": "https://github.com/modul-tech/test-gh-action#readme",
+  "homepage": "https://github.com/AliMusaev/dotnet-version-bump#readme",
   "dependencies": {
     "@actions/core": "^1.6.0",
     "@actions/github": "^5.0.0"
