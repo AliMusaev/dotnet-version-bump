@@ -18,11 +18,8 @@ jobs:
       - name: get-npm-version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@master
-      - uses: rickstaa/action-create-tag@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ steps.package-version.outputs.current-version }}
-          message: "Latest release"
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/${{ steps.package-version.outputs.current-version }}')
+        with:
+          tag_name: ${{ steps.package-version.outputs.current-version }}
