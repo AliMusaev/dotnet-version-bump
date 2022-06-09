@@ -1,1 +1,1 @@
-# dotnet-bump-version
+# dotnet-bump-version v0.0.7
