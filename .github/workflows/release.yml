@@ -2,7 +2,7 @@ name: Release action
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ main ]
 
 jobs:
   package:
