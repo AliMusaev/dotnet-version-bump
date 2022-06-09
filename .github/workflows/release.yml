@@ -18,6 +18,10 @@ jobs:
       - name: get-npm-version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@master
+      - name: commit changes
+        run: |
+          git tag ${{ steps.package-version.outputs.current-version }}
+          git push origin ${{ steps.package-version.outputs.current-version }}
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/${{ steps.package-version.outputs.current-version }}')
