@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import fs from 'fs';
+import { promises } from 'fs';
 
 const main = async () => {
     try {
@@ -10,7 +10,7 @@ const main = async () => {
         switch (core.getInput('dotnetVersion')) {
         case '4':
             try {
-                oldVersion = readVersion(file, 'Version(\"', '\"');
+                oldVersion = readVersion(file, 'Version("', '"');
             } catch (e) {
                 oldVersion = readVersion(file, 'Version>', '<');
             }
@@ -21,7 +21,7 @@ const main = async () => {
         newVersion = castArrayVersionToString(upVersion(castStringVersionToArray(oldVersion)));
         const re = new RegExp(oldVersion, 'g');
         const newFile = file.replace(re, newVersion);
-        await fs.promises.writeFile(core.getInput('filename'), newFile);
+        await promises.writeFile(core.getInput('filename'), newFile);
         core.setOutput('version', newVersion);
     } catch (err: any) {
         core.setFailed(err.message);
@@ -45,7 +45,7 @@ const readFile = async (filename: string) => {
     if (!filename) {
         throw new Error('file name is empty');
     }
-    const file = await fs.promises.readFile(filename, 'utf-8');
+    const file = await promises.readFile(filename, 'utf-8');
     return file;
 };
 
